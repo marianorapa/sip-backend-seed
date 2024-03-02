@@ -96,7 +96,7 @@ public class APIControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "testUser", authorities = {"SCOPE_read:messages"})
+    @WithMockUser(username = "testUser", authorities = {"read:admin-messages"})
     public void testPrivateScopedEndpointReturnsOkWhenProperScopes() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/api/private-scoped"))
                 .andDo(print())
