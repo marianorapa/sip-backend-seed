@@ -1,3 +1,5 @@
+# To enable set SPRING_PROFILES_ACTIVE=dev
+
 debug: true
 server:
   port: ${PORT:8080}
@@ -13,22 +15,21 @@ logging:
 okta:
   oauth2:
     # Replace with the domain of your Auth0 tenant.
-    issuer: {AUTH0_ISSUER}
+    issuer: https://dev-iwyuw5rnqqzmi8i3.us.auth0.com/
     # Replace with the API Identifier for your Auth0 API.
-    audience: {AUTH0_AUDIENCE}
-
+    audience: https://sip-api-endpoint
 
 # datasource config
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:{DB_PORT}/{DB_NAME}
-    username: {DB_USER}
-    password: {DB_PASS}
+    url: jdbc:postgresql://localhost:5433/sip-backend-db
+    username: application
+    password: application
     driver-class-name: org.postgresql.Driver
 
 # flyway migration config
   flyway:
     enabled: true
-    url: jdbc:postgresql://${DB_HOST}:{DB_PORT}/{DB_NAME}
-    user: {DDL_USER}
-    password: {DDL_PASS}
+    url: jdbc:postgresql://localhost:5433/sip-backend-db
+    user: ddl-user
+    password: ddl-user
