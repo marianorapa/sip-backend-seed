@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:16.2-alpine
+    ports:
+    - 5433:5432
+    volumes:
+    # create additional  app user
+    - ./docker-compose/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: "ddl-user"
+      POSTGRES_PASSWORD: "ddl-user"
+      POSTGRES_DB: "sip-backend-db"
+  sip-backend-seed:
+    image: sip-backend-seed:latest
+    ports:
+    - 8080:8080
+    environment:
+    - spring.profiles.active=dev
+    - server.port=8080
+    depends_on:
+    - postgres

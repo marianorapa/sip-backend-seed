@@ -1,0 +1,1 @@
+CREATE USER "application" WITH PASSWORD 'application';
