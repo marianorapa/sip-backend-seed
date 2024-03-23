@@ -1,3 +1,20 @@
+# Ejecutar con Docker
+
+Para ejecutar en docker localmente, desde la consola construimos la imagen de Docker usando `make`:
+
+```shell
+make docker-build
+```
+Luego, ejecutamos el contenedor junto al de la base de datos:
+
+```shell
+make docker-run
+```
+
+-------------------- 
+
+# Original Readme
+
 # Authorization with Spring MVC
 
 This sample demonstrates:

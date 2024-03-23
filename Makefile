@@ -23,8 +23,13 @@ run: run-dependencies
 	# run the app
 	./gradlew bootRun --args='--spring.profiles.active=dev'
 
+.PHONY: docker-clean
+docker-clean:
+  # Build local and run unit tests
+	-docker image rm ${IMAGE_NAME}:${TAG}
+
 .PHONY: docker-build
-docker-build:
+docker-build: docker-clean
   # Build local and run unit tests
 	docker build -t ${IMAGE_NAME}:${TAG} .
 ##
@@ -35,8 +40,8 @@ run-dependencies:
 	# start dependent services in background
 	docker-compose up -d --no-recreate postgres
 
-.PHONY: run-docker
-run-docker: docker-build
+.PHONY: docker-run
+docker-run: docker-build
 	docker-compose up -d
 
 .PHONY: down
